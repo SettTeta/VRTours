@@ -119,9 +119,6 @@ export default function BrowsePage({ videos }) {
         </ul>
       </div>
 
-
-      {/* search bar = check search input by mapping it to the list of videos */}
-
       <div className="album py-5 bg-light">
         <div className="container-xxl content-row">
           <div className="row">
@@ -139,7 +136,7 @@ export default function BrowsePage({ videos }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`https://sp-2-git-working-settteta.vercel.app/api/browse/videos/`)
+  const res = await fetch(`https://sp-2-eta.vercel.app/api/browse/videos/`)
   // const res = await fetch(`http://localhost:3000/api/browse/videos/`)
   const videos = await res.json()
   return { props: { videos } }
