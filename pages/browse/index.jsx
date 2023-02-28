@@ -14,6 +14,7 @@ export default function BrowsePage({ videos }) {
   const [videosToShow, setVideosToShow] = useState(6);
   const [showOnlyTrue, setShowOnlyTrue] = useState(false);
   const [activeTab, setActiveTab] = useState("all");
+  const [searchValue, setSearchValue] = useState("");
 
 
   function loadMoreVideos() {
@@ -35,7 +36,11 @@ export default function BrowsePage({ videos }) {
     );
   }
 
-
+  function search(){
+    setSearchValue("");
+    setVideosToShow(6);
+  }
+  
 
   function renderVideoCards() {
     const videosToDisplay = videos
@@ -45,6 +50,9 @@ export default function BrowsePage({ videos }) {
         } else {
           return video.type === false;
         }
+      })
+      .filter(video => {
+        return video.title.toLowerCase().includes(searchValue.toLowerCase());
       })
       .slice(0, videosToShow);
     return videosToDisplay.map(renderVideoCard);
@@ -88,6 +96,15 @@ export default function BrowsePage({ videos }) {
           </p>
         </div>
       </section>
+
+      <br />
+
+      <div className="input-group rounded" style={{ padding: "0 15% 0 15%" }}>
+        <input type="search" className="form-control rounded" placeholder="Thailand" aria-label="Search" aria-describedby="search-addon" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+        <span className="input-group-text border-0" id="search-addon">
+          <i className="fas fa-search" onClick={search}>Clear</i>
+        </span>
+      </div>
 
       <br />
 

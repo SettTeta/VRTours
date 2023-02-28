@@ -3,7 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 import locationIcon from 'public/locationIcon.jpg';
-import durationIcon from 'public/durationIcon.jpg';
+import durationIcon from 'public/durationIcon2.jpg';
 import calenderIcon from 'public/calenderIcon.jpg';
 
 function CardTemplate(props) {
@@ -23,7 +23,7 @@ function CardTemplate(props) {
                     <div className="card-body">
                         <p className="card-text" style={{ borderBottom: "3px solid #eee", paddingBottom: "10px" }}>{desc}</p>
 
-                        <table class="table table-borderless">
+                        <table className="table table-borderless" style={{tableLayout: "fixed"}}>
                             <thead>
                                 <tr>
                                     <td className="col-md-4">
@@ -37,8 +37,8 @@ function CardTemplate(props) {
                                         <Image className="rounded mx-auto d-block"
                                             src={durationIcon}
                                             alt=""
-                                            width="30"
-                                            height="30" />
+                                            width="40"
+                                            height="40" />
                                     </td>
                                     <td className="col-md-4">
                                         <Image className="rounded mx-auto d-block"
@@ -48,15 +48,15 @@ function CardTemplate(props) {
                                             height="30" />
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td className="col-md-4" style={{textAlign:"center"}}>
+                                <tr style={{textAlign: "center", verticalAlign: "top"}}>
+                                    <td className="col-md-4">
                                         <small className="text-muted">{location}</small>
                                     </td>
-                                    <td className="col-md-4" style={{textAlign:"center"}}>
-                                    <small className="text-muted">{duration} mins</small>
+                                    <td className="col-md-4">
+                                        <small className="text-muted">{duration} mins</small>
                                     </td>
-                                    <td className="col-md-4" style={{textAlign:"center"}}>
-                                    <small className="text-muted">{dOU}</small>
+                                    <td className="col-md-4">
+                                        <small className="text-muted">{dOU}</small>
                                     </td>
                                 </tr>
                             </thead>
