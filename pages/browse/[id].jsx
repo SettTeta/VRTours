@@ -14,7 +14,7 @@ import vrIcon from 'public/vrIcon.jpg';
 import backArrow from 'public/backArrow2.jpg';
 
 
-const url = process.env.API_URL;
+const url = process.env.BRANCH_URL;
 // const url = "https://sp-2-eta.vercel.app"
 // const url = "http://localhost:3000"
 
