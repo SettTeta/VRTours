@@ -153,11 +153,11 @@ export default function Video({ video }) {
 }
 
 // STEP 1: This function will be executed at the server before loading the page.
-// export async function getServerSideProps({ params }) {
-//     console.debug('params', params)
-//     const res = await fetch(`https://sp-2-eta.vercel.app/api/browse/videos/${params.id}`)
-//     // const res = await fetch(`http://localhost:3000/api/browse/videos/${params.id}`)
-//     const video = await res.json()
-//     console.debug('blog 1', video)
-//     return { props: { video } }
-// }
+export async function getServerSideProps({ params }) {
+    console.debug('params', params)
+    const res = await fetch(`https://sp-2-eta.vercel.app/api/browse/videos/${params.id}`)
+    // const res = await fetch(`http://localhost:3000/api/browse/videos/${params.id}`)
+    const video = await res.json()
+    console.debug('blog 1', video)
+    return { props: { video } }
+}
