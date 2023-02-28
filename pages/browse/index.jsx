@@ -132,7 +132,7 @@ export default function BrowsePage({ videos }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`${process.env.VERCEL_URL || "http://localhost:3000"}/api/browse/videos/`)
+  const res = await fetch(`https://sp-2-hmdai43wa-settteta.vercel.app/api/browse/videos`)
   const videos = await res.json()
   console.debug('blog 1', videos)
   return { props: { videos } }
