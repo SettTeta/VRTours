@@ -5,7 +5,7 @@ import Head from 'next/head'
 import { useState } from "react";
 import Link from 'next/link'
 
-// const url = process.env.API_URL;
+const url = process.env.BRANCH_URL;
 // const url = "https://sp-2-eta.vercel.app"
 // const url = "http://localhost:3000"
 
@@ -136,9 +136,12 @@ export default function BrowsePage({ videos }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`https://sp-2-eta.vercel.app/api/browse/videos/`)
+  const res = await fetch(`${url}/api/browse/videos/`)
   // const res = await fetch(`http://localhost:3000/api/browse/videos/`)
   const videos = await res.json()
+  console.debug('blog 2', res)
+
+  console.debug('blog 1', videos)
   return { props: { videos } }
 }
 

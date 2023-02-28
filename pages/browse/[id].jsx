@@ -145,7 +145,6 @@ export default function Video({ video }) {
                         </div>
                         <Link href={video.link} className="btn btn-primary my-2" style={{ margin: "50px" }}>Go to Website</Link>
                     </div>
-
                 </div>
             </div>
         </>
