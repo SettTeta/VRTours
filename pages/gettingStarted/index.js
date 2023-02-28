@@ -41,7 +41,7 @@ function GettingStartedPage() {
                                 <br></br>
                                 <Image className="rounded mx-auto d-block"
                                     src={iosIcon}
-                                    alt="Picture of the author"
+                                    alt=""
                                     width="130"
                                     height="130" />
                                 <br></br>

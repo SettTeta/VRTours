@@ -1,33 +1,71 @@
 import * as React from "react"
 import Image from "next/image"
+import Link from "next/link"
+
+import locationIcon from 'public/locationIcon.jpg';
+import durationIcon from 'public/durationIcon.jpg';
+import calenderIcon from 'public/calenderIcon.jpg';
 
 function CardTemplate(props) {
     const { title, link, desc, onView, duration, location, dOU } = props
     return (
-        <div className="col-md-4">
-            <div className="card mb-4 box-shadow">
-                <div className="card-header bg-light" style={{verticalAlign:"middle"}}>
-                    <h5>{title}</h5>
-                </div>
+        <div className="col-md-4" >
+            <Link href={`browse/${onView}`} style={{ textDecoration: 'none', color: '#000' }}>
+                <div className="card mb-4 box-shadow" >
+                    <div className="card-header bg-light" style={{ verticalAlign: "middle" }}>
+                        <h5>{title}</h5>
+                    </div>
 
-                <div style={{ background: "#eee" }}>
-                    <img src={link} style={{height:"100%", width:"100%", borderRadius: "1%", padding:"5px"}}></img>
-                </div>
+                    <div style={{ background: "#eee" }}>
+                        <img src={link} style={{ height: "100%", width: "100%", borderRadius: "1%", padding: "5px" }}></img>
+                    </div>
 
-                <div className="card-body">
-                    <p className="card-text" style={{ borderBottom: "3px solid #eee", paddingBottom: "10px" }}>{desc}</p>
-                    <small className="text-muted">Location: {location}</small>
-                    <br />
-                    <small className="text-muted">Duration: {duration} mins</small>
-                    <br />
-                    <small className="text-muted">Uploaded: {dOU}</small>
-                    <br />
-                    <br />
+                    <div className="card-body">
+                        <p className="card-text" style={{ borderBottom: "3px solid #eee", paddingBottom: "10px" }}>{desc}</p>
 
-                    <a type="button" style={{ width: "100%" }} className="btn btn-sm btn-primary" href={`/browse/${onView}`}>View</a>
+                        <table class="table table-borderless">
+                            <thead>
+                                <tr>
+                                    <td className="col-md-4">
+                                        <Image className="rounded mx-auto d-block"
+                                            src={locationIcon}
+                                            alt=""
+                                            width="30"
+                                            height="30" />
+                                    </td>
+                                    <td className="col-md-4">
+                                        <Image className="rounded mx-auto d-block"
+                                            src={durationIcon}
+                                            alt=""
+                                            width="30"
+                                            height="30" />
+                                    </td>
+                                    <td className="col-md-4">
+                                        <Image className="rounded mx-auto d-block"
+                                            src={calenderIcon}
+                                            alt=""
+                                            width="30"
+                                            height="30" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="col-md-4" style={{textAlign:"center"}}>
+                                        <small className="text-muted">{location}</small>
+                                    </td>
+                                    <td className="col-md-4" style={{textAlign:"center"}}>
+                                    <small className="text-muted">{duration} mins</small>
+                                    </td>
+                                    <td className="col-md-4" style={{textAlign:"center"}}>
+                                    <small className="text-muted">{dOU}</small>
+                                    </td>
+                                </tr>
+                            </thead>
+                        </table>
+
+                    </div>
                 </div>
-            </div>
-        </div>
+            </Link >
+        </div >
     )
 }
 

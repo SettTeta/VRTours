@@ -5,7 +5,7 @@ import Head from 'next/head'
 import { useState } from "react";
 import Link from 'next/link'
 
-const url = process.env.API_URL;
+// const url = process.env.API_URL;
 // const url = "https://sp-2-eta.vercel.app"
 // const url = "http://localhost:3000"
 
@@ -13,6 +13,8 @@ export default function BrowsePage({ videos }) {
 
   const [videosToShow, setVideosToShow] = useState(6);
   const [showOnlyTrue, setShowOnlyTrue] = useState(false);
+  const [activeTab, setActiveTab] = useState("all");
+
 
   function loadMoreVideos() {
     setVideosToShow(videosToShow + 3);
@@ -50,19 +52,21 @@ export default function BrowsePage({ videos }) {
 
   function handleShowAllClick() {
     setShowOnlyTrue(false);
+    setActiveTab("all");
   }
-
 
   function handleShowOnlyTrueClick() {
     setShowOnlyTrue(true);
+    setActiveTab("true");
   }
+
 
   if (!videos) return (
     <div>
-        <p>Videos not found</p>
-        <Link href="/browse">Back</Link>
+      <p>Videos not found</p>
+      <Link href="/browse">Back</Link>
     </div>
-);
+  );
 
   return (
     <main role="main">
@@ -87,15 +91,18 @@ export default function BrowsePage({ videos }) {
 
       <br />
 
-      <ul className="nav nav-tabs">
-        <li className="nav-item">
-          <Link className="nav-link active" href="" onClick={handleShowAllClick}>360 VR Tour</Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" href="" onClick={handleShowOnlyTrueClick}>Interactive Tour</Link>
-        </li>
-      </ul>
-      
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <ul className="nav nav-tabs">
+          <li className="nav-item">
+            <Link className={`nav-link ${activeTab === "all" ? "active" : ""}`} href="" onClick={handleShowAllClick} >360 VR Tour</Link>
+          </li>
+          <li className="nav-item">
+            <Link className={`nav-link ${activeTab === "true" ? "active" : ""}`} href="" onClick={handleShowOnlyTrueClick} >Interactive Tour</Link>
+          </li>
+        </ul>
+      </div>
+
+
       {/* search bar = check search input by mapping it to the list of videos */}
 
       <div className="album py-5 bg-light">
@@ -116,6 +123,7 @@ export default function BrowsePage({ videos }) {
 
 export async function getServerSideProps() {
   const res = await fetch(`https://sp-2-eta.vercel.app/api/browse/videos/`)
+  // const res = await fetch(`http://localhost:3000/api/browse/videos/`)
   const videos = await res.json()
   return { props: { videos } }
 }
