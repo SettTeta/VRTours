@@ -23,7 +23,7 @@ export default function BrowsePage({ videos }) {
         key={video._id}
         title={video.title}
         link={video.link}
-        thumbnail={video.link}
+        thumbnail={video.thumbnail}
         desc={video.desc}
         onView={video._id}
         duration={video.duration}

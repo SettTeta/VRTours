@@ -6,6 +6,8 @@ import locationIcon from 'public/locationIcon.jpg';
 import durationIcon from 'public/durationIcon2.jpg';
 import calenderIcon from 'public/calenderIcon.jpg';
 
+//browse/${onView}
+
 function CardTemplate(props) {
     const { title, link, desc,thumbnail, onView, duration, location, dOU } = props
     return (
