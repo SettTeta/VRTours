@@ -7,7 +7,7 @@ import durationIcon from 'public/durationIcon2.jpg';
 import calenderIcon from 'public/calenderIcon.jpg';
 
 function CardTemplate(props) {
-    const { title, link, desc, onView, duration, location, dOU } = props
+    const { title, link, desc,thumbnail, onView, duration, location, dOU } = props
     return (
         <div className="col-md-4" >
             <Link href={link} style={{ textDecoration: 'none', color: '#000' }}>
@@ -17,7 +17,7 @@ function CardTemplate(props) {
                     </div>
 
                     <div style={{ background: "#eee" }}>
-                        <img src={link} style={{ height: "100%", width: "100%", borderRadius: "1%", padding: "5px" }}></img>
+                        <img src={thumbnail} style={{ height: "100%", width: "100%", borderRadius: "1%", padding: "5px" }}></img>
                     </div>
 
                     <div className="card-body">

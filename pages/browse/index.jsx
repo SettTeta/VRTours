@@ -22,7 +22,8 @@ export default function BrowsePage({ videos }) {
       <VideoCard
         key={video._id}
         title={video.title}
-        link={video.thumbnail}
+        link={video.link}
+        thumbnail={video.link}
         desc={video.desc}
         onView={video._id}
         duration={video.duration}
