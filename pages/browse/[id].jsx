@@ -116,11 +116,11 @@ export default function Video({ video }) {
                     <br />
 
 
-                    <div className="card mb-3">
+                    <div className="card mb-3" style={{fontSize:"80%"}}>
                         <div className="row g-0 ">
-                            <div className="col-md-5">
+                            <div className="col-md-4" >
                                 <div className="card-body">
-                                    <h5 className="card-title">Description:</h5>
+                                    <h6 className="card-title">Description:</h6>
                                     <p className="card-text">{video.desc}</p>
                                 </div>
                             </div>

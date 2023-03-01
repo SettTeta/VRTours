@@ -10,7 +10,7 @@ function CardTemplate(props) {
     const { title, link, desc, onView, duration, location, dOU } = props
     return (
         <div className="col-md-4" >
-            <Link href={`browse/${onView}`} style={{ textDecoration: 'none', color: '#000' }}>
+            <Link href={link} style={{ textDecoration: 'none', color: '#000' }}>
                 <div className="card mb-4 box-shadow" >
                     <div className="card-header bg-light" style={{ verticalAlign: "middle" }}>
                         <h5>{title}</h5>
