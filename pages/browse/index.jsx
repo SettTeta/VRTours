@@ -33,11 +33,11 @@ export default function BrowsePage({ videos }) {
     );
   }
 
-  function search(){
+  function search() {
     setSearchValue("");
     setVideosToShow(6);
   }
-  
+
 
   function renderVideoCards() {
     const videosToDisplay = videos

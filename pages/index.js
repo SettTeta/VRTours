@@ -38,7 +38,7 @@ function HomePage() {
                                         <h1 className="mb-3">Welcome to our VR Hosting Platform</h1>
                                         <h4 className="mb-3">Here is a collection of VR Videos that are tailored to your liking</h4>
                                         <br></br>
-                                        <Link className="btn btn-outline-light btn-lg" href="/gettingStarted" role="button">Click here to get Started</Link>
+                                        <Link className="btn btn-outline-light btn-lg" href="/browse" role="button">Click here to Start Browsing</Link>
                                     </div>
                                 </div>
                             </div>
@@ -52,10 +52,10 @@ function HomePage() {
                             <div className="content p-0 text-center bg-image" style={{ height: "100vh", position: "relative", bottom: "0", background: "rgba(0, 0, 0, 0.6)", color: "#f1f1f1", width: "100%" }}>
                                 <div className="d-flex justify-content-center align-items-center h-100">
                                     <div className="text-white">
-                                        <h1 className="mb-3">Already visted Before?</h1>
-                                        <h4 className="mb-3">Then just continue on to our video collection</h4>
+                                        <h1 className="mb-3">Haven't visted Before?</h1>
+                                        <h4 className="mb-3">Then just go to our Getting Started Page to learn how to use</h4>
                                         <br></br>
-                                        <Link className="btn btn-outline-light btn-lg" href="/browse" role="button">Browse</Link>
+                                        <Link className="btn btn-outline-light btn-lg" href="/gettingStarted" role="button">How To Use</Link>
                                     </div>
                                 </div>
                             </div>
