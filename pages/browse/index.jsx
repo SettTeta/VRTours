@@ -5,14 +5,13 @@ import Head from 'next/head'
 import { useState } from "react";
 import Link from 'next/link'
 
-const url = process.env.API_URL;
-// const url = "https://sp-2-eta.vercel.app"
-// const url = "http://localhost:3000"
-
 export default function BrowsePage({ videos }) {
 
   const [videosToShow, setVideosToShow] = useState(6);
   const [showOnlyTrue, setShowOnlyTrue] = useState(false);
+  const [activeTab, setActiveTab] = useState("all");
+  const [searchValue, setSearchValue] = useState("");
+
 
   function loadMoreVideos() {
     setVideosToShow(videosToShow + 3);
@@ -23,7 +22,8 @@ export default function BrowsePage({ videos }) {
       <VideoCard
         key={video._id}
         title={video.title}
-        link={video.thumbnail}
+        link={video.youtube}
+        thumbnail={video.thumbnail}
         desc={video.desc}
         onView={video._id}
         duration={video.duration}
@@ -33,7 +33,11 @@ export default function BrowsePage({ videos }) {
     );
   }
 
-
+  function search(){
+    setSearchValue("");
+    setVideosToShow(6);
+  }
+  
 
   function renderVideoCards() {
     const videosToDisplay = videos
@@ -44,25 +48,30 @@ export default function BrowsePage({ videos }) {
           return video.type === false;
         }
       })
+      .filter(video => {
+        return video.title.toLowerCase().includes(searchValue.toLowerCase());
+      })
       .slice(0, videosToShow);
     return videosToDisplay.map(renderVideoCard);
   }
 
   function handleShowAllClick() {
     setShowOnlyTrue(false);
+    setActiveTab("all");
   }
-
 
   function handleShowOnlyTrueClick() {
     setShowOnlyTrue(true);
+    setActiveTab("true");
   }
+
 
   if (!videos) return (
     <div>
-        <p>Videos not found</p>
-        <Link href="/browse">Back</Link>
+      <p>Videos not found</p>
+      <Link href="/browse">Back</Link>
     </div>
-);
+  );
 
   return (
     <main role="main">
@@ -87,16 +96,25 @@ export default function BrowsePage({ videos }) {
 
       <br />
 
-      <ul className="nav nav-tabs">
-        <li className="nav-item">
-          <Link className="nav-link active" href="" onClick={handleShowAllClick}>360 VR Tour</Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" href="" onClick={handleShowOnlyTrueClick}>Interactive Tour</Link>
-        </li>
-      </ul>
-      
-      {/* search bar = check search input by mapping it to the list of videos */}
+      <div className="input-group rounded" style={{ padding: "0 15% 0 15%" }}>
+        <input type="search" className="form-control rounded" placeholder="Thailand" aria-label="Search" aria-describedby="search-addon" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+        <span className="input-group-text border-0" id="search-addon">
+          <i className="fas fa-search" onClick={search}>Clear</i>
+        </span>
+      </div>
+
+      <br />
+
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <ul className="nav nav-tabs">
+          <li className="nav-item">
+            <Link className={`nav-link ${activeTab === "all" ? "active" : ""}`} href="" onClick={handleShowAllClick} >360 VR Tour</Link>
+          </li>
+          <li className="nav-item">
+            <Link className={`nav-link ${activeTab === "true" ? "active" : ""}`} href="" onClick={handleShowOnlyTrueClick} >Interactive Tour</Link>
+          </li>
+        </ul>
+      </div>
 
       <div className="album py-5 bg-light">
         <div className="container-xxl content-row">
@@ -115,8 +133,9 @@ export default function BrowsePage({ videos }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`https://sp-2-eta.vercel.app/api/browse/videos/`)
+  const res = await fetch(`https://sp-2-eta.vercel.app/api/browse/videos`)
   const videos = await res.json()
+  console.debug('blog 1', videos)
   return { props: { videos } }
 }
 

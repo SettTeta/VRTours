@@ -41,7 +41,7 @@ function GettingStartedPage() {
                                 <br></br>
                                 <Image className="rounded mx-auto d-block"
                                     src={iosIcon}
-                                    alt="Picture of the author"
+                                    alt=""
                                     width="130"
                                     height="130" />
                                 <br></br>
@@ -54,7 +54,7 @@ function GettingStartedPage() {
                             </div>
                             <div className="col-md-2">
                                 <div className="card-body">
-                                    <a className="btn btn-outline-primary" data-bs-toggle="collapse" href="#collapseExample1" aria-controls="collapseExample1">More Details</a>
+                                    <a className="btn btn-outline-primary" data-bs-toggle="collapse" href="#collapseExample1" aria-controls="collapseExample1" aria-expanded="false">More Details</a>
                                     <br />
                                     <a className="btn btn-outline-secondary" data-bs-toggle="collapse" href="#collapseExample1" aria-controls="collapseExample1">View Device</a>
                                 </div>
