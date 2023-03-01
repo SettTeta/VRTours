@@ -151,8 +151,8 @@ function GettingStartedPage() {
                                     <h5>Experience:</h5>
                                     <p>1. Download GizmoVR on Steam <br />
                                         2. Run the application <br />
-                                        3. On the browser tab, visit our website and choose a video.
-                                        4. Once in Youtube, press -PLAY in fullscreen-
+                                        3. On the browser tab, visit our website and choose a video. <br />
+                                        4. Once in Youtube, press -PLAY in fullscreen- <br />
                                         5. Go to settings and change angle to 360
                                     </p>
                                     <br></br>
