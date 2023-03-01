@@ -52,7 +52,7 @@ function HomePage() {
                             <div className="content p-0 text-center bg-image" style={{ height: "100vh", position: "relative", bottom: "0", background: "rgba(0, 0, 0, 0.6)", color: "#f1f1f1", width: "100%" }}>
                                 <div className="d-flex justify-content-center align-items-center h-100">
                                     <div className="text-white">
-                                        <h1 className="mb-3">Haven't visted Before?</h1>
+                                        <h1 className="mb-3">Have not visted Before?</h1>
                                         <h4 className="mb-3">Then just go to our Getting Started Page to learn how to use</h4>
                                         <br></br>
                                         <Link className="btn btn-outline-light btn-lg" href="/gettingStarted" role="button">How To Use</Link>

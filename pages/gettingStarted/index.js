@@ -66,7 +66,7 @@ function GettingStartedPage() {
                             <div className="col-md-7">
                                 <div className="card-body">
                                     <h3 className="card-title">Mobile Devices</h3>
-                                    <p className="card-text">Includes iPad and iPhone as well as other Apples products except the Mac.</p>
+                                    <p className="card-text">Any mobile phones and devices.</p>
                                 </div>
                             </div>
                             <div className="col-md-2" style={{ verticalAlign: "middle" }}>
@@ -85,7 +85,7 @@ function GettingStartedPage() {
                                     <br></br>
 
                                     <h5>Limitations:</h5>
-                                    <p>1. iOS cannot be view the videos with "Cardboard VR goggles" or stereoscopic view. <br />
+                                    <p>1. iOS cannot be view the videos with Cardboard VR goggles or stereoscopic view. <br />
                                         2. However Android can (more instruction on how to view below). <br />
                                     </p>
                                     <br></br>
@@ -128,7 +128,7 @@ function GettingStartedPage() {
                                     <br></br>
 
                                     <h5>Limitations:</h5>
-                                    <p>1. There is no mode where you can "immerse" yourself in the video <br />
+                                    <p>1. There is no mode where you can immerse yourself in the video <br />
                                         2. Use your mouse or trackpad to navigate in the video
                                     </p>
                                     <br></br>
@@ -167,7 +167,7 @@ function GettingStartedPage() {
                                     <p>1. Download GizmoVR on Steam <br />
                                         2. Run the application <br />
                                         3. On the browser tab, visit our website and choose a video.
-                                        4. Once in Youtube, press "PLAY in fullscreen"
+                                        4. Once in Youtube, press -PLAY in fullscreen-
                                         5. Go to settings and change angle to 360
                                     </p>
                                     <br></br>
