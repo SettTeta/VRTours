@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Header from 'components/header'
 import Image from 'next/image'
 
-import iosIcon from 'public/iosIcon.jpg';
+import iosIcon from 'public/phoneIcon.jpg';
 import andIcon from 'public/androidIcon.jpg';
 import cardIcon from 'public/cardboardIcon.jpg';
 import desktopIcon from 'public/desktopIcon.jpg';
@@ -39,28 +39,13 @@ function GettingStartedPage() {
                         <div className="row g-0 ">
                             <div className="col-md-2 align-self-center ">
                                 <br></br>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <td>
-                                                <Image className="rounded mx-auto d-block"
-                                                    src={iosIcon}
-                                                    alt=""
-                                                    width="65"
-                                                    height="65" />
-                                            </td>
-                                            <td>
-                                                <Image className="rounded mx-auto d-block"
-                                                    src={andIcon}
-                                                    alt=""
-                                                    width="65"
-                                                    height="65" />
-                                            </td>
-                                        </tr>
-                                    </thead>
+                                <Image className="rounded mx-auto d-block"
+                                    src={iosIcon}
+                                    alt=""
+                                    width="130"
+                                    height="130" />
 
 
-                                </table>
                                 <br></br>
                             </div>
                             <div className="col-md-8">
