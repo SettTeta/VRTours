@@ -37,7 +37,7 @@ function GettingStartedPage() {
 
                     <div className="card mb-3">
                         <div className="row g-0 ">
-                            <div className="col-md-3 align-self-center ">
+                            <div className="col-md-2 align-self-center ">
                                 <br></br>
                                 <table>
                                     <thead>
@@ -46,15 +46,15 @@ function GettingStartedPage() {
                                                 <Image className="rounded mx-auto d-block"
                                                     src={iosIcon}
                                                     alt=""
-                                                    width="130"
-                                                    height="130" />
+                                                    width="65"
+                                                    height="65" />
                                             </td>
                                             <td>
                                                 <Image className="rounded mx-auto d-block"
                                                     src={andIcon}
                                                     alt=""
-                                                    width="130"
-                                                    height="130" />
+                                                    width="65"
+                                                    height="65" />
                                             </td>
                                         </tr>
                                     </thead>
@@ -63,7 +63,7 @@ function GettingStartedPage() {
                                 </table>
                                 <br></br>
                             </div>
-                            <div className="col-md-7">
+                            <div className="col-md-8">
                                 <div className="card-body">
                                     <h3 className="card-title">Mobile Devices</h3>
                                     <p className="card-text">Any mobile phones and devices.</p>
@@ -218,7 +218,7 @@ function GettingStartedPage() {
 
                                     <h5>Limitations:</h5>
                                     <p>1. iOS Devices cannot use this mode. <br />
-                                        2. There is no way to control video once it is in the headset
+                                        2. There is no way to control video once it is in the headset without purchasing a bluetooth remote.
                                     </p>
                                     <br></br>
                                 </div>
