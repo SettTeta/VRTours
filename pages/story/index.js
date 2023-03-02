@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Scene, Entity } from "aframe-react";
 
+
 export default function ImmersionZone() {
     const [fr, setFr] = useState(false);
     const [playing, setPlaying] = useState(false);
@@ -9,6 +10,7 @@ export default function ImmersionZone() {
     useEffect(() => {
         const loadAframe = async () => {
             const AFRAME = await import("aframe");
+            const pauseIcon = await import("components/pauseIcon");
             console.log(AFRAME);
             setFr(true);
         };
@@ -34,6 +36,7 @@ export default function ImmersionZone() {
 
     console.log("playing:", playing);
 
+
     return (
         <>
             <div>
@@ -44,30 +47,30 @@ export default function ImmersionZone() {
                                 id="intro"
                                 src="intro.mp4"
                                 autoPlay
-                                loop
                                 ref={videoRef}
                             ></video>
                         </a-assets>
 
                         <a-camera>
-                            <a-cursor></a-cursor>
+                            <a-cursor ></a-cursor>
                         </a-camera>
 
                         <a-videosphere
                             src="#intro"
                             rotation="0 -90 0"
                             onClick={handlePlay}
+                            autoPlay
                         ></a-videosphere>
-                        {playing && (
-                            <Entity
-                                geometry={{ primitive: "box" }}
-                                position="0 1 -3"
-                                click={handlePause}
-                                text="value: Pause"
+                        {/* {playing && ( */}
 
-                                events={{click: handlePause}}
-                            ></Entity>
-                        )}
+                        <Entity
+                            position="0 1 -3"
+                            pause-icon="size: 2; color: #ffffff"
+                            onClick={handlePause}
+                            events={{ click: handlePause }}
+                            pauseIcon={{ size: 0.1, color: '#ffffff' }}
+                        ></Entity>
+                        {/* )} */}
                     </Scene>
                 )}
             </div>
