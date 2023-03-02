@@ -65,7 +65,7 @@ export default function ImmersionZone() {
                         <a-videosphere
                             src="#intro"
                             rotation="0 -90 0"
-                            onClick={handlePlay}
+                            // onClick={handlePlay}
                             autoPlay
                             playsInline
                         ></a-videosphere>
@@ -74,15 +74,15 @@ export default function ImmersionZone() {
                         <Entity
                             position="-2 1 -3"
                             pause-icon="size: 1; color: #ffffff"
-                            onClick={handlePause}
-                            events={{ click: handlePause }}
+                            // onClick={handlePause}
+                            events={{ click: handlePause, touchStart: handlePause }}
                         ></Entity>
 
                         <Entity
                             position="2 1 -3"
                             play-icon="size: 1; color: #ffffff"
-                            onClick={handlePlay}
-                            events={{ click: handlePlay }}
+                            // onClick={handlePlay}
+                            events={{ click: handlePlay, touchStart: handlePlay }}
                         ></Entity>
                         {/* )} */}
                     </Scene>
