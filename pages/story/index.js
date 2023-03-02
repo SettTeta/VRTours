@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Scene, Entity } from "aframe-react";
+import Head from 'next/head'
 
 
 export default function ImmersionZone() {
@@ -11,6 +12,7 @@ export default function ImmersionZone() {
         const loadAframe = async () => {
             const AFRAME = await import("aframe");
             const pauseIcon = await import("components/pauseIcon");
+            const playIcon = await import("components/playIcon");
             console.log(AFRAME);
             setFr(true);
         };
@@ -39,6 +41,10 @@ export default function ImmersionZone() {
 
     return (
         <>
+            <Head>
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+                <title>Woop</title>
+            </Head>
             <div>
                 {fr && (
                     <Scene>
@@ -48,6 +54,7 @@ export default function ImmersionZone() {
                                 src="intro.mp4"
                                 autoPlay
                                 ref={videoRef}
+                                playsInline
                             ></video>
                         </a-assets>
 
@@ -60,15 +67,22 @@ export default function ImmersionZone() {
                             rotation="0 -90 0"
                             onClick={handlePlay}
                             autoPlay
+                            playsInline
                         ></a-videosphere>
                         {/* {playing && ( */}
 
                         <Entity
-                            position="0 1 -3"
-                            pause-icon="size: 2; color: #ffffff"
+                            position="-2 1 -3"
+                            pause-icon="size: 1; color: #ffffff"
                             onClick={handlePause}
                             events={{ click: handlePause }}
-                            pauseIcon={{ size: 0.1, color: '#ffffff' }}
+                        ></Entity>
+
+                        <Entity
+                            position="2 1 -3"
+                            play-icon="size: 1; color: #ffffff"
+                            onClick={handlePlay}
+                            events={{ click: handlePlay }}
                         ></Entity>
                         {/* )} */}
                     </Scene>
