@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@next/font": "13.1.6",
+    "aframe": "^1.4.1",
+    "aframe-react": "^4.4.0",
     "bootstrap": "^5.2.3",
     "cors": "^2.8.5",
     "eslint": "8.33.0",

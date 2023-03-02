@@ -22,6 +22,9 @@ const Header = () => {
                             <li className="nav-item">
                                 <Link className="nav-link" href="/gettingStarted">Getting Started</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" href="/story">Start Immersion</Link>
+                            </li>
                             
                             {/* <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
