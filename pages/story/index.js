@@ -42,7 +42,6 @@ export default function ImmersionZone() {
     return (
         <>
             <Head>
-                <meta name="apple-mobile-web-app-capable" content="yes" />
                 <title>Woop</title>
             </Head>
             <div>
