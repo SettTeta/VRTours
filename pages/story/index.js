@@ -44,47 +44,57 @@ export default function ImmersionZone() {
             <Head>
                 <title>Woop</title>
             </Head>
+
+
+
             <div>
                 {fr && (
-                    <Scene>
-                        <a-assets>
-                            <video
-                                id="intro"
-                                src="intro.mp4"
+                    <div>
+
+                        <button onClick={() => document.querySelector('Scene').requestFullscreen()} style={{ paddingTop: "40px" }}>Toggle Fullscreen</button>
+
+                        <Scene>
+                            <a-assets>
+                                <video
+                                    id="intro"
+                                    src="intro.mp4"
+                                    autoPlay
+                                    ref={videoRef}
+                                    playsInline
+                                ></video>
+                            </a-assets>
+
+                            <a-camera>
+                                <a-cursor ></a-cursor>
+                            </a-camera>
+
+                            <a-videosphere
+
+                                src="#intro"
+                                rotation="0 -90 0"
+                                // onClick={handlePlay}
                                 autoPlay
-                                ref={videoRef}
                                 playsInline
-                            ></video>
-                        </a-assets>
+                            ></a-videosphere>
+                            {/* {playing && ( */}
 
-                        <a-camera>
-                            <a-cursor ></a-cursor>
-                        </a-camera>
+                            <Entity
+                                position="-2 1 -3"
+                                pause-icon="size: 1; color: #ffffff"
+                                // onClick={handlePause}
+                                events={{ click: handlePause, touchStart: handlePause }}
+                            ></Entity>
 
-                        <a-videosphere
-                            src="#intro"
-                            rotation="0 -90 0"
-                            // onClick={handlePlay}
-                            autoPlay
-                            playsInline
-                        ></a-videosphere>
-                        {/* {playing && ( */}
+                            <Entity
+                                position="2 1 -3"
+                                play-icon="size: 1; color: #ffffff"
+                                // onClick={handlePlay}
+                                events={{ click: handlePlay, touchStart: handlePlay }}
+                            ></Entity>
+                            {/* )} */}
+                        </Scene>
+                    </div>
 
-                        <Entity
-                            position="-2 1 -3"
-                            pause-icon="size: 1; color: #ffffff"
-                            // onClick={handlePause}
-                            events={{ click: handlePause, touchStart: handlePause }}
-                        ></Entity>
-
-                        <Entity
-                            position="2 1 -3"
-                            play-icon="size: 1; color: #ffffff"
-                            // onClick={handlePlay}
-                            events={{ click: handlePlay, touchStart: handlePlay }}
-                        ></Entity>
-                        {/* )} */}
-                    </Scene>
                 )}
             </div>
         </>

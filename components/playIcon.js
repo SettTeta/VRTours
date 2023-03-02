@@ -18,8 +18,8 @@ AFRAME.registerComponent('play-icon', {
       segmentsRadial: 3
     });
     icon.setAttribute('material', { color: color });
-    icon.setAttribute('rotation', { x: -90, y: 0, z: 0 });
-    icon.setAttribute('position', { x: size, y: 0, z: 0 });
+    icon.setAttribute('rotation', { x: 0, y: 0, z: 90 });
+    icon.setAttribute('position', { x: size/4, y: 0, z: 0 });
 
 
 
