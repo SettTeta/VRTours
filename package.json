@@ -12,7 +12,6 @@
     "@next/font": "13.1.6",
     "aframe": "^1.4.1",
     "aframe-always-fullscreen-component": "^1.0.0",
-    "aframe-gui": "^0.5.1",
     "aframe-react": "^4.4.0",
     "bootstrap": "^5.2.3",
     "cors": "^2.8.5",
