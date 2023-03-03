@@ -45,58 +45,57 @@ export default function ImmersionZone() {
                 <title>Woop</title>
             </Head>
 
+            {fr && (
+                <div>
+                    <Scene >
+                        <button onClick={() => document.querySelector('Scene').requestFullscreen()} style={{ paddingTop: "70px" }}></button>
 
-
-            <div>
-                {fr && (
-                    <div>
-
-                        <button onClick={() => document.querySelector('Scene').requestFullscreen()} style={{ paddingTop: "40px" }}>Toggle Fullscreen</button>
-
-                        <Scene>
-                            <a-assets>
-                                <video
-                                    id="intro"
-                                    src="intro.mp4"
-                                    autoPlay
-                                    ref={videoRef}
-                                    playsInline
-                                ></video>
-                            </a-assets>
-
-                            <a-camera>
-                                <a-cursor ></a-cursor>
-                            </a-camera>
-
-                            <a-videosphere
-
-                                src="#intro"
-                                rotation="0 -90 0"
-                                // onClick={handlePlay}
+                        <a-assets>
+                            <video
+                                id="intro"
+                                src="intro.mp4"
                                 autoPlay
-                                playsInline
-                            ></a-videosphere>
-                            {/* {playing && ( */}
+                                ref={videoRef}
+                            ></video>
+                        </a-assets>
 
-                            <Entity
-                                position="-2 1 -3"
-                                pause-icon="size: 1; color: #ffffff"
-                                // onClick={handlePause}
-                                events={{ click: handlePause, touchStart: handlePause }}
-                            ></Entity>
+                        <a-camera>
+                            <a-cursor ></a-cursor>
+                        </a-camera>
 
-                            <Entity
-                                position="2 1 -3"
-                                play-icon="size: 1; color: #ffffff"
-                                // onClick={handlePlay}
-                                events={{ click: handlePlay, touchStart: handlePlay }}
-                            ></Entity>
-                            {/* )} */}
-                        </Scene>
-                    </div>
+                        <a-videosphere
+                            src="#intro"
+                            rotation="0 -90 0"
+                            autoPlay
+                        ></a-videosphere>
 
-                )}
-            </div>
+                        <Entity
+                            position="-2 1 -3"
+                            pause-icon="size: 1; color: #ffffff"
+                            events={{ click: handlePause, touchStart: handlePause }}
+                        ></Entity>
+
+                        <Entity
+                            position="2 1 -3"
+                            play-icon="size: 1; color: #ffffff"
+                            events={{ click: handlePlay, touchStart: handlePlay }}
+                        ></Entity>
+
+                        <a-gui-flex-container
+                            flex-direction="column" justify-content="center" align-items="normal" component-padding="0.1" opacity="0.7" width="3.5" height="4.5"
+                            panel-color="#072B73"
+                            panel-rounded="0.2"
+                            position="0 1 -3" rotation="0 0 0"
+                        >
+                            ... gui items here...
+
+                        </a-gui-flex-container>
+
+                        <a-enter-vr></a-enter-vr>
+                    </Scene>
+                </div>
+
+            )}
         </>
     );
 }

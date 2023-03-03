@@ -6,4 +6,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.a-loader-title {
+    color: red;
   }
