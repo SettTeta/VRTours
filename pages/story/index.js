@@ -56,6 +56,7 @@ export default function ImmersionZone() {
                                 src="intro.mp4"
                                 autoPlay
                                 ref={videoRef}
+                                playsInline
                             ></video>
                         </a-assets>
 
@@ -64,34 +65,28 @@ export default function ImmersionZone() {
                         </a-camera>
 
                         <a-videosphere
+
                             src="#intro"
                             rotation="0 -90 0"
+                            // onClick={handlePlay}
                             autoPlay
                         ></a-videosphere>
+                        {/* {playing && ( */}
 
                         <Entity
                             position="-2 1 -3"
                             pause-icon="size: 1; color: #ffffff"
+                            // onClick={handlePause}
                             events={{ click: handlePause, touchStart: handlePause }}
                         ></Entity>
 
                         <Entity
                             position="2 1 -3"
                             play-icon="size: 1; color: #ffffff"
+                            // onClick={handlePlay}
                             events={{ click: handlePlay, touchStart: handlePlay }}
                         ></Entity>
-
-                        <a-gui-flex-container
-                            flex-direction="column" justify-content="center" align-items="normal" component-padding="0.1" opacity="0.7" width="3.5" height="4.5"
-                            panel-color="#072B73"
-                            panel-rounded="0.2"
-                            position="0 1 -3" rotation="0 0 0"
-                        >
-                            ... gui items here...
-
-                        </a-gui-flex-container>
-
-                        <a-enter-vr></a-enter-vr>
+                        {/* )} */}
                     </Scene>
                 </div>
 
