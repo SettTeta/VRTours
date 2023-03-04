@@ -8,11 +8,11 @@ export default function ImmersionZone() {
     const [fr, setFr] = useState(false);
     const [playing, setPlaying] = useState(false);
     const [videoPlayer, setVideoPlayer] = useState(true);
-    const [videoIndex, setVideoIndex] = useState(0);
+    const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
-    const videoOrderList = ["#intro", "#sala", "#end"];
+    const [videoOrderList, setVideoOrderList] = useState(["intro", "end", "sala"]);
 
-    const [currentVideo, setCurrentVideo] = useState(videoOrderList[videoIndex]);
+    const [currentVideo, setCurrentVideo] = useState(`#${videoOrderList[currentVideoIndex]}`);
 
 
 
@@ -43,13 +43,8 @@ export default function ImmersionZone() {
         }
     };
 
-    const handleVideoChange = () => {
-        const i = videoIndex + 1;
-        if (i >= videoOrderList.length) {
-            setVideoIndex(0);
-        } else {
-            setVideoIndex(i)
-        }
+    const handleVideoNext = () => {
+        const nextIndex = (currentVideoIndex + 1) % videoOrderList.length;
 
         // Pause the currently playing video (if any)
         if (playing) {
@@ -59,9 +54,11 @@ export default function ImmersionZone() {
         }
 
         // Set the new video source and reset the playing state
-        setCurrentVideo(videoOrderList[videoIndex]);
+        setCurrentVideoIndex(nextIndex);
+        setCurrentVideo(`#${videoOrderList[nextIndex]}`);
         setPlaying(false);
     };
+
 
     const handleHide = () => {
         if (videoPlayer === false) {
@@ -70,6 +67,13 @@ export default function ImmersionZone() {
             setVideoPlayer(false)
         }
     }
+
+    const handleVideoEnd = () => {
+        setPlaying(false);
+        const nextVideoIndex = (currentVideoIndex + 1) % videoOrderList.length;
+        setCurrentVideoIndex(nextVideoIndex);
+        setCurrentVideo(`#${videoOrderList[nextVideoIndex]}`);
+      };
 
     console.log("playing:", playing);
 
@@ -97,27 +101,17 @@ export default function ImmersionZone() {
                                     src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"
                                 ></audio>
 
-                                <video
-                                    id="intro"
-                                    src="intro.mp4"
-                                    loop
-                                    autoPlay
-                                    playsInline
-                                ></video>
-                                <video
-                                    id="sala"
-                                    src="sala-jat.mp4"
-                                    loop
-                                    autoPlay
-                                    playsInline
-                                ></video>
-                                <video
-                                    id="end"
-                                    src="end.mp4"
-                                    loop
-                                    autoPlay
-                                    playsInline
-                                ></video>
+                                {videoOrderList.map((videoSrc, index) => (
+                                    <video
+                                        id={videoSrc}
+                                        key={videoSrc}
+                                        src={`${videoSrc}.mp4`}
+                                        onEnded={handleVideoEnd}
+                                        autoPlay
+                                        playsInline
+                                    />
+                                ))}
+
                             </a-assets>
 
                             <a-camera>
@@ -125,7 +119,13 @@ export default function ImmersionZone() {
                                     id="cursor"
                                     animation__click="property: scale; from: 0.1 0.1 0.1; to: 1 1 1; easing: easeInCubic; dur: 150; startEvents: click"
                                     // animation__clickreset="property: scale; to: 0.1 0.1 0.1; dur: 1; startEvents: animationcomplete__click"
-                                    animation__fusing="property: scale; from: 1 1 1; to: 0.1 0.1 0.1; easing: easeInCubic; dur: 150; startEvents: fusing"></a-cursor>
+                                    animation__fusing="property: scale; from: 1 1 1; to: 0.1 0.1 0.1; easing: easeInCubic; dur: 150; startEvents: fusing">
+                                </a-cursor>
+
+                                <a-gui-cursor id="cursor"
+                                    fuse="false"
+                                >
+                                </a-gui-cursor>
                             </a-camera>
 
 
@@ -144,7 +144,7 @@ export default function ImmersionZone() {
                                 events={{ click: handleHide, touchStart: handleHide }}
                             />)}
 
-                            {videoPlayer && (<Entity
+                            {videoPlayer && (<Entity id="videoPlayer"
                                 position="0 1 -1"
                                 rotation="-15 0 0"
                                 geometry="primitive: plane; width: 2; height: 0.8"
@@ -179,7 +179,7 @@ export default function ImmersionZone() {
                                     ></Entity>
                                 )}
 
-                                <Entity id="next" events={{ click: handleVideoChange }} sound="on: click; src: #click-sound">
+                                <Entity id="next" events={{ click: handleVideoNext }} sound="on: click; src: #click-sound">
                                     <Entity
                                         position="0.5 0 0"
                                         play-icon="size: 1; color: white"
