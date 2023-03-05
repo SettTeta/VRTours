@@ -28,6 +28,8 @@ export default function ImmersionZone() {
     );
 }
 
+
+
 function SceneOne() {
     const [currentScene, setCurrentScene] = useState("scene1");
     const [currentImage, setCurrentImage] = useState("#img1");
@@ -40,6 +42,7 @@ function SceneOne() {
         setCurrentScene(currentScene === "scene1" ? "scene2" : "scene1");
         console.log("scene 1 button works")
     };
+    
     return (
         <div>
             {currentScene === "scene1" && (

@@ -1,3 +1,5 @@
+import AFRAME from "aframe";
+
 AFRAME.registerComponent('pause-icon', {
     schema: {
       size: { type: 'number', default: 1 },

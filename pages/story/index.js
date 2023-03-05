@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Scene, Entity } from "aframe-react";
 import Head from 'next/head'
 import Script from "next/script";
@@ -13,6 +13,8 @@ export default function ImmersionZone() {
     const [videoOrderList, setVideoOrderList] = useState(["intro", "sala", "end"]);
 
     const [currentVideo, setCurrentVideo] = useState(`#${videoOrderList[currentVideoIndex]}`);
+
+    const [videoDisplay, setVideoDisplay] = useState(false);
 
 
 
@@ -77,7 +79,17 @@ export default function ImmersionZone() {
         setVideoPlayer(true)
     };
 
-    console.log("playing:", playing);
+    const handleDisplay = () => {
+        const video = document.querySelector("#salad");
+        handlePause
+        video.play();
+        setVideoDisplay(true)
+    };
+
+    const handleDisplayOff = () => {
+        setVideoDisplay(false)
+    };
+
 
     return (
         <>
@@ -92,40 +104,55 @@ export default function ImmersionZone() {
                     <div>
                         {/* aframe-gui-component */}
                         <Script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js" />
+                        <Script src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js" />
 
-
+                        {/* fullscreen and vr mode */}
                         <button onClick={() => document.querySelector('.Scene').requestFullscreen()} style={{ paddingTop: "70px" }}>Request Fullscreen</button>
 
                         <Scene>
+
                             <a-assets>
                                 <audio
                                     id="click-sound"
                                     src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"
                                 ></audio>
 
+                                {/* rendering the videolist */}
                                 {videoOrderList.map((videoSrc, index) => (
                                     <video
                                         id={videoSrc}
-                                        key={videoSrc}
+                                        key={videoSrc + index}
                                         src={`${videoSrc}.mp4`}
                                         onEnded={handleVideoEnd}
                                         playsInline
                                     />
                                 ))}
 
+                                {/* video for display */}
+                                <video id="salad" autoplay
+                                    src="sala.mp4" type="video/mp4"
+                                    onEnded={handleDisplayOff}
+                                >
+                                </video>
+
+
                             </a-assets>
 
+
                             <a-camera>
+                                {/* inner */}
                                 <a-cursor
                                     id="cursor"
                                     animation__click="property: scale; from: 0.1 0.1 0.1; to: 1 1 1; easing: easeInCubic; dur: 150; startEvents: click"
+                                    color="#ff0000"
                                     // animation__clickreset="property: scale; to: 0.1 0.1 0.1; dur: 1; startEvents: animationcomplete__click"
                                     animation__fusing="property: scale; from: 1 1 1; to: 0.1 0.1 0.1; easing: easeInCubic; dur: 150; startEvents: fusing">
                                 </a-cursor>
 
+                                {/* outer */}
                                 <a-gui-cursor id="cursor"
-                                    raycaster="objects: [HTMLElement]"
-                                    fuse="true" fuse-timeout="2000"
+                                    // raycaster="objects: [HTMLElement]"
+                                    fuse-timeout="1500"
                                     color="#ECEFF1"
                                     hover-color="#CFD8DC"
                                     active-color="#607D8B"
@@ -134,7 +161,20 @@ export default function ImmersionZone() {
                                 </a-gui-cursor>
                             </a-camera>
 
+                            {/* video display example */}
+                            {videoDisplay && (
 
+                                <a-curvedimage
+                                    src="#salad"
+                                    height="20"
+                                    radius="50"
+                                    position="0 10 -5"
+                                    theta-length="90"
+                                    theta-start="135"
+                                ></a-curvedimage>
+                            )}
+
+                            {/* 360 video display */}
                             <a-videosphere
                                 id="videosphere"
                                 src={currentVideo}
@@ -143,29 +183,40 @@ export default function ImmersionZone() {
                                 playsInline
                             ></a-videosphere>
 
-                            {!videoPlayer && (<Entity id="show" position="0 -10 0" events={{ click: handleHide, touchStart: handleHide }}
+                            {/* show entity */}
+                            {!videoPlayer && (<Entity id="show" position="0 -20 0" events={{ click: handleHide, touchStart: handleHide }}
+                                event-set__mouseenter="scale: 1.2 1.2 1.2"
+                                event-set__mouseleave="scale: 1 1 1"
                             >
-                                <Entity 
+                                <Entity
                                     rotation="90 0 0"
-                                    geometry="primitive: torus; radius: 8; radiusTubular: 0.4"
-                                    material="color: #ffffff; opacity: 0.8"
+                                    geometry="primitive: torus; radius: 8; radiusTubular: 0.2"
+                                    material="color: #ff0000; opacity: 0.8"
                                 />
                                 <Entity
-                                    geometry="primitive: cylinder; radius: 7"
-                                    material="color: #ffffff; opacity: 0.5"
+                                    geometry="primitive: cylinder; radius: 7.4"
+                                    material="color: #ffffff; opacity: 0.7"
                                 />
 
                             </Entity>)}
 
+                            {/* entire video player */}
                             {videoPlayer && (<Entity id="videoPlayer"
-                                position="0 1 -1"
-                                rotation="-15 0 0"
+                                position="0 0.5 -1"
+                                rotation="-45 0 0"
                                 geometry="primitive: plane; width: 2; height: 0.8"
-                                material="color: #ffffff; opacity: 0.5"
+                                material="color: #ff0000; opacity: 0.5"
+
                             >
+                                <Entity
+                                    position="0 0 -0.01"
+                                    geometry="primitive: box; width: 2.05; height: 0.85; depth: 0.01; segments-height: 2; segments-width: 2"
+                                    material="color: #ffffff; opacity: 0.8"
+                                ></Entity>
+
                                 <Entity id="title"
                                     position="0 0.3 0"
-                                    text="value: Video Player; align: center; color: #000000"
+                                    text="value: Video Player; align: center; color: #ffffff;"
                                 />
 
                                 <Entity id="hide"
@@ -173,6 +224,9 @@ export default function ImmersionZone() {
                                     geometry="primitive: box; width: 0.2; height: 0.05; depth:0.1;"
                                     material="color: #ffffff"
                                     events={{ click: handleHide, touchStart: handleHide }}
+
+                                    event-set__mouseenter="scale: 1.2 1.2 1"
+                                    event-set__mouseleave="scale: 1 1 1"
                                 />
 
                                 {playing && (
@@ -180,6 +234,9 @@ export default function ImmersionZone() {
                                         // position="0 1 -1"
                                         pause-icon="size: 0.3; color: #ffffff"
                                         events={{ click: handlePause, touchStart: handlePause }}
+
+                                        event-set__mouseenter="scale: 1.2 1.2 1"
+                                        event-set__mouseleave="scale: 1 1 1"
                                     ></Entity>
                                 )}
 
@@ -189,10 +246,14 @@ export default function ImmersionZone() {
                                         play-icon="size: 1; color: #ffffff"
                                         events={{ click: handlePlay, touchStart: handlePlay }}
                                         sound="on: click; src: #click-sound"
+                                        event-set__mouseenter="scale: 1.2 1.2 1"
+                                        event-set__mouseleave="scale: 1 1 1"
                                     ></Entity>
                                 )}
 
-                                <Entity id="next" events={{ click: handleVideoNext }} sound="on: click; src: #click-sound">
+                                <Entity id="next" events={{ click: handleVideoNext }} sound="on: click; src: #click-sound"
+                                    event-set__mouseenter="scale: 1.2 1.2 1"
+                                    event-set__mouseleave="scale: 1 1 1">
                                     <Entity
                                         position="0.5 0 0"
                                         play-icon="size: 1; color: white"
@@ -205,6 +266,29 @@ export default function ImmersionZone() {
 
                             </Entity>
                             )}
+
+                            {/* display video entity */}
+                            {currentVideo === "#intro" && (
+                                <Entity
+                                id="display"
+                                events={{ click: handleDisplay }}
+                                sound="on: click; src: #click-sound"
+                                position="-3 30 -50"
+                                rotation="25 5 0"
+                                event-set__mouseenter="scale: 1.5 1.5 1.5"
+                                event-set__mouseleave="scale: 1 1 1">
+                                <Entity
+                                    position="0 0 0"
+                                    play-icon="size: 10; color: white"
+                                />
+                                <Entity
+                                    position="0 0 -0.5"
+                                    geometry="primitive: circle; radius: 3"
+                                    material="color: #ff0000; opacity: 0.8"
+                                />
+                            </Entity>
+                            )}
+                            
 
                         </Scene>
                     </div>
