@@ -10,7 +10,7 @@ export default function ImmersionZone() {
     const [videoPlayer, setVideoPlayer] = useState(true);
     const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
-    const [videoOrderList, setVideoOrderList] = useState(["intro", "end", "sala"]);
+    const [videoOrderList, setVideoOrderList] = useState(["intro", "sala", "end"]);
 
     const [currentVideo, setCurrentVideo] = useState(`#${videoOrderList[currentVideoIndex]}`);
 
@@ -32,6 +32,7 @@ export default function ImmersionZone() {
             const video = document.querySelector(currentVideo);
             video.play();
             setPlaying(true);
+            setVideoPlayer(false)
         }
     };
 
@@ -73,7 +74,8 @@ export default function ImmersionZone() {
         const nextVideoIndex = (currentVideoIndex + 1) % videoOrderList.length;
         setCurrentVideoIndex(nextVideoIndex);
         setCurrentVideo(`#${videoOrderList[nextVideoIndex]}`);
-      };
+        setVideoPlayer(true)
+    };
 
     console.log("playing:", playing);
 
@@ -92,7 +94,7 @@ export default function ImmersionZone() {
                         <Script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js" />
 
 
-                        <button onClick={() => document.querySelector('Scene').requestFullscreen()} style={{ paddingTop: "70px" }}></button>
+                        <button onClick={() => document.querySelector('.Scene').requestFullscreen()} style={{ paddingTop: "70px" }}>Request Fullscreen</button>
 
                         <Scene>
                             <a-assets>
@@ -107,7 +109,6 @@ export default function ImmersionZone() {
                                         key={videoSrc}
                                         src={`${videoSrc}.mp4`}
                                         onEnded={handleVideoEnd}
-                                        autoPlay
                                         playsInline
                                     />
                                 ))}
@@ -123,7 +124,12 @@ export default function ImmersionZone() {
                                 </a-cursor>
 
                                 <a-gui-cursor id="cursor"
-                                    fuse="false"
+                                    raycaster="objects: [HTMLElement]"
+                                    fuse="true" fuse-timeout="2000"
+                                    color="#ECEFF1"
+                                    hover-color="#CFD8DC"
+                                    active-color="#607D8B"
+                                    design="ring"
                                 >
                                 </a-gui-cursor>
                             </a-camera>
@@ -137,12 +143,19 @@ export default function ImmersionZone() {
                                 playsInline
                             ></a-videosphere>
 
-                            {!videoPlayer && (<Entity id="show"
-                                position="0 1 -1"
-                                geometry="primitive: box; width: 0.2; height: 0.05; depth:0.1;"
-                                material="color: #ffffff"
-                                events={{ click: handleHide, touchStart: handleHide }}
-                            />)}
+                            {!videoPlayer && (<Entity id="show" position="0 -10 0" events={{ click: handleHide, touchStart: handleHide }}
+                            >
+                                <Entity 
+                                    rotation="90 0 0"
+                                    geometry="primitive: torus; radius: 8; radiusTubular: 0.4"
+                                    material="color: #ffffff; opacity: 0.8"
+                                />
+                                <Entity
+                                    geometry="primitive: cylinder; radius: 7"
+                                    material="color: #ffffff; opacity: 0.5"
+                                />
+
+                            </Entity>)}
 
                             {videoPlayer && (<Entity id="videoPlayer"
                                 position="0 1 -1"
