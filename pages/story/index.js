@@ -15,6 +15,7 @@ export default function ImmersionZone() {
     const [currentVideo, setCurrentVideo] = useState(`#${videoOrderList[currentVideoIndex]}`);
 
     const [videoDisplay, setVideoDisplay] = useState(false);
+    const [imageDisplay, setImageDisplay] = useState(false);
 
 
 
@@ -90,6 +91,14 @@ export default function ImmersionZone() {
         setVideoDisplay(false)
     };
 
+    const handleImage = () => {
+        setImageDisplay(true)
+    };
+
+    const handleImageOff = () => {
+        setImageDisplay(false)
+    };
+
 
     return (
         <>
@@ -135,6 +144,7 @@ export default function ImmersionZone() {
                                 >
                                 </video>
 
+                                <img id="map" src="abac-map.jpg" />
 
                             </a-assets>
 
@@ -160,19 +170,6 @@ export default function ImmersionZone() {
                                 >
                                 </a-gui-cursor>
                             </a-camera>
-
-                            {/* video display example */}
-                            {videoDisplay && (
-
-                                <a-curvedimage
-                                    src="#salad"
-                                    height="20"
-                                    radius="50"
-                                    position="0 10 -5"
-                                    theta-length="90"
-                                    theta-start="135"
-                                ></a-curvedimage>
-                            )}
 
                             {/* 360 video display */}
                             <a-videosphere
@@ -270,25 +267,101 @@ export default function ImmersionZone() {
                             {/* display video entity */}
                             {currentVideo === "#intro" && (
                                 <Entity
-                                id="display"
-                                events={{ click: handleDisplay }}
-                                sound="on: click; src: #click-sound"
-                                position="-3 30 -50"
-                                rotation="25 5 0"
-                                event-set__mouseenter="scale: 1.5 1.5 1.5"
-                                event-set__mouseleave="scale: 1 1 1">
-                                <Entity
-                                    position="0 0 0"
-                                    play-icon="size: 10; color: white"
-                                />
-                                <Entity
-                                    position="0 0 -0.5"
-                                    geometry="primitive: circle; radius: 3"
-                                    material="color: #ff0000; opacity: 0.8"
-                                />
-                            </Entity>
+                                    id="display"
+                                    events={{ click: handleDisplay }}
+                                    sound="on: click; src: #click-sound"
+                                    position="-3 30 -50"
+                                    rotation="25 5 0"
+                                    event-set__mouseenter="scale: 1.5 1.5 1.5"
+                                    event-set__mouseleave="scale: 1 1 1">
+                                    <Entity
+                                        position="0 0 0"
+                                        play-icon="size: 10; color: white"
+                                    />
+                                    <Entity
+                                        position="0 0 -0.5"
+                                        geometry="primitive: circle; radius: 3"
+                                        material="color: #ff0000; opacity: 0.8"
+                                    />
+                                </Entity>
                             )}
-                            
+
+                            {/* display video entity */}
+                            {currentVideo === "#intro" && (
+                                <Entity
+                                    id="display"
+                                    events={{ click: handleDisplay }}
+                                    sound="on: click; src: #click-sound"
+                                    position="-3 30 -50"
+                                    rotation="25 5 0"
+                                    event-set__mouseenter="scale: 1.5 1.5 1.5"
+                                    event-set__mouseleave="scale: 1 1 1">
+                                    <Entity
+                                        position="0 0 0"
+                                        play-icon="size: 10; color: white"
+                                    />
+                                    <Entity
+                                        position="0 0 -0.5"
+                                        geometry="primitive: circle; radius: 3"
+                                        material="color: #ff0000; opacity: 0.8"
+                                    />
+                                </Entity>
+                            )}
+
+                            {videoDisplay && (
+
+                                <a-curvedimage
+                                    src="#salad"
+                                    height="20"
+                                    radius="50"
+                                    position="0 10 -5"
+                                    theta-length="90"
+                                    theta-start="135"
+                                ></a-curvedimage>
+                            )}
+
+
+                            {/* display image entity */}
+                            {currentVideo === "#intro" && (
+                                <Entity
+                                    id="displayImage"
+                                    events={{ click: handleImage }}
+                                    sound="on: click; src: #click-sound"
+                                    position="-5 1 0"
+                                    rotation="0 90 0"
+                                    event-set__mouseenter="scale: 1.5 1.5 1.5"
+                                    event-set__mouseleave="scale: 1 1 1">
+                                    <Entity
+                                        position="0 0.1 0"
+                                        play-icon="size: 1; color: white"
+                                    />
+                                    <Entity
+                                        position="0 0.06 -0.5"
+                                        geometry="primitive: circle; radius: 0.3"
+                                        material="color: #ff0000; opacity: 0.8"
+                                    />
+                                </Entity>
+                            )}
+
+                            {imageDisplay && (
+                                <Entity
+                                    position="-2 1 0"
+                                    rotation="0 90 0"
+                                    events={{ click: handleImageOff}}
+                                >
+                                    <Entity
+                                        geometry="primitive: plane; height: 2; width: 1"
+                                        material="src: #map; color:#ffffff"
+                                    /><Entity
+                                        position="0 -0.03 -0.1"
+                                        geometry="primitive: plane; height: 2.2; width: 1.1"
+                                        material="color:#ff0000"
+                                    />
+                                </Entity>
+
+                            )}
+
+
 
                         </Scene>
                     </div>
