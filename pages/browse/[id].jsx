@@ -5,6 +5,7 @@ import Header from 'components/header'
 import { useState } from "react"
 import { Button } from "react-bootstrap"
 import Image from "next/image"
+// import ReactPlayer from 'react-player/youtube'
 
 import iosIcon from 'public/iosIcon.jpg';
 import andIcon from 'public/androidIcon.jpg';
@@ -12,6 +13,9 @@ import deskIcon from 'public/desktopIcon.jpg';
 import cardIcon from 'public/cardboardIcon.jpg';
 import vrIcon from 'public/vrIcon.jpg';
 import backArrow from 'public/backArrow2.jpg';
+
+import dynamic from 'next/dynamic'
+const ReactPlayer = dynamic(() => import("react-player/youtube"), { ssr: false });
 
 
 const url = process.env.BRANCH_URL;
@@ -57,37 +61,37 @@ export default function Video({ video }) {
                             <Button className={`nav-link ${activeTab === "ios" ? "active" : ""}`} onClick={() => handleTab("ios")} data-bs-toggle="collapse" href="#collapseExample1" aria-controls="collapseExample1"><Image className="rounded mx-auto d-block"
                                 src={iosIcon}
                                 alt=""
-                                width="40"
-                                height="40" /></Button>
+                                width="35"
+                                height="35" /></Button>
                         </li>
                         <li className="nav-item">
                             <Button className={`nav-link ${activeTab === "android" ? "active" : ""}`} onClick={() => handleTab("android")} data-bs-toggle="collapse" href="#collapseExample2" aria-controls="collapseExample2"><Image className="rounded mx-auto d-block"
                                 src={andIcon}
                                 alt=""
-                                width="40"
-                                height="40" /></Button>
+                                width="35"
+                                height="35" /></Button>
                         </li>
                         <li className="nav-item">
                             <Button className={`nav-link ${activeTab === "desktop" ? "active" : ""}`} onClick={() => handleTab("desktop")} ><Image className="rounded mx-auto d-block"
                                 src={deskIcon}
                                 alt=""
-                                width="40"
-                                height="40" /></Button>
+                                width="35"
+                                height="35" /></Button>
                         </li>
                         <li className="nav-item">
                             <Button className={`nav-link ${activeTab === "card" ? "active" : ""}`} onClick={() => handleTab("card")} ><Image className="rounded mx-auto d-block"
                                 src={cardIcon}
                                 alt=""
-                                width="40"
-                                height="30"
+                                width="35"
+                                height="25"
                             /></Button>
                         </li>
                         <li className="nav-item">
                             <Button className={`nav-link ${activeTab === "vrHeadset" ? "active" : ""}`} onClick={() => handleTab("vrHeadset")} ><Image className="rounded mx-auto d-block"
                                 src={vrIcon}
                                 alt=""
-                                width="40"
-                                height="40" /></Button>
+                                width="35"
+                                height="35" /></Button>
                         </li>
                     </ul>
                 </div>
@@ -108,15 +112,22 @@ export default function Video({ video }) {
                 </div>
 
                 <div className="container-xxl content-row">
-                    <div style={{ position: 'relative', paddingBottom: '56.25%', height: '0' }}>
-                        <iframe className="vr-iframe" width="921" height="518" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            src={video.link} style={{ width: '100%', height: '100%', position: 'absolute', top: '0', left: '0' }} allowFullScreen></iframe>
+
+                    <div className="player-wrapper">
+                        <ReactPlayer
+                            url={video.link}
+                            className="react-player"
+                            playing
+                            width="100%"
+                            height="100%"
+                            controls
+                        />
                     </div>
 
                     <br />
 
 
-                    <div className="card mb-3" style={{fontSize:"80%"}}>
+                    <div className="card mb-3" style={{ fontSize: "80%" }}>
                         <div className="row g-0 ">
                             <div className="col-md-4" >
                                 <div className="card-body">
@@ -143,7 +154,7 @@ export default function Video({ video }) {
                                 </div>
                             </div>
                         </div>
-                        <Link href={video.link} className="btn btn-primary my-2" style={{ margin: "50px" }}>Go to Website</Link>
+                        <Link href={video.link} className="btn btn-primary my-2" style={{ margin: "50px" }}>View on Youtube</Link>
                     </div>
                 </div>
             </div>
