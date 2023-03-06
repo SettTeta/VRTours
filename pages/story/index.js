@@ -118,7 +118,7 @@ export default function ImmersionZone() {
                         {/* fullscreen and vr mode */}
                         <button onClick={() => document.querySelector('.Scene').requestFullscreen()} style={{ paddingTop: "70px" }}>Request Fullscreen</button>
 
-                        <Scene>
+                        <Scene vr-mode-ui="arEnabled: false">
 
                             <a-assets>
                                 <audio
